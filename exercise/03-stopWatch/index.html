@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+input { width:30px }      
+    </style>
+    <title>碼表 StopWatch </title>
+  </head>
+  <body>
+<script>
+  var counter = 10
+  var controler = 0
+  var isStop = 0
+  function showCounter() {
+    var CounterLable = document.getElementById('counter')
+    CounterLable.innerText = counter
+    if (isStop === 0) {
+      if ( counter > 0 ) {
+      counter--        
+      } else 
+        if (counter === 0) {
+          reset()
+        }
+      setTimeout(showCounter, 1000);      
+    }
+  }
+
+  function control () {
+    if ( controler === 0 ) {
+      isStop = 0
+      showCounter()
+      controler = 1
+    } else 
+      if( controler === 1 ) {
+        isStop = 1
+        controler = 0
+      }
+  }
+
+  function reset () {
+    alert("Time's up!")
+    counter = 10
+    isStop = 1
+    controler = 0
+  }
+</script>
+  <center>    
+    <label id="counter">10</label><br>
+    <button  id="start" onclick="control()">開始 / 停止</button>
+  </center>
+  </body>
+</html>

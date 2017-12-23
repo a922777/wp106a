@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+<script>
+  function input () {
+     
+  }
+
+  function calculate() {
+    var exp = document.getElementById('exp')
+    var result = document.getElementById('result')
+    result.innerText = eval(exp.value)
+  }
+</script>    
+    <input id="exp" type="text" value="3*9+2"/> = <label id="result"></label><br/><br/>
+    <button onclick="input()" value="1">1</button><button onclick="input()" value="2">2</button><button onclick="input()" value="3">3</button><button onclick="input()" value="+">+</button><br>
+    <button onclick="input()" value="4">4</button><button onclick="input()" value="5">5</button><button onclick="input()" value="6">6</button><button onclick="input()" value="-">-</button><br>
+    <button onclick="input()" value="7">7</button><button onclick="input()" value="8">8</button><button onclick="input()" value="9">9</button><button onclick="input()" value="*">*</button><br>
+    <button onclick="input()" value="0">0</button><button onclick="input()" value="/">/</button><button onclick="calculate()">=</button>
+  </body>
+</html>

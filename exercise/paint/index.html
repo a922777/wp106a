@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>簡易小畫家</title>
+
+    
+    
+<script type="text/javascript">
+        var draw; 
+        var m, c;
+        function init() {
+            m = document.getElementById("m"); 
+            c = m.getContext("2d");
+            Radio5.checked = "checked";
+        }
+        function md() {
+            c.moveTo(event.offsetX, event.offsetY); 
+            draw = true;
+            c.beginPath(); 
+        }
+        function mv() {
+            if (draw) {
+                c.lineTo(event.offsetX, event.offsetY);
+                c.stroke();
+            }
+        }
+        function mup() {
+            draw = false;
+            c.closePath(); 
+        }
+        function Radio1_onclick() { c.strokeStyle = "rgb(255,0,0)"; } //red 
+        function Radio2_onclick() { c.strokeStyle = "rgb(0,255,0)"; } //green
+        function Radio3_onclick() { c.strokeStyle = "rgb(0,0,255)"; } //blue
+        function Radio4_onclick() { c.strokeStyle = "rgb(0,0,0)"; } //black
+        function Radio5_onclick() { c.strokeStyle = "rgb(255,255,255)"; } //white
+        function Radio6_onclick() { c.lineWidth = 1; }
+        function Radio7_onclick() { c.lineWidth = 2; }
+        function Radio8_onclick() { c.lineWidth = 3; }
+        function Radio9_onclick() { c.lineWidth = 5; }
+        function Radio10_onclick() { c.lineWidth = 10; }
+        function Button1_onclick() { location.reload(); }
+        function saveFileAs() {
+        var text = document.getElementById('img')
+        dialog.showSaveDialog(
+        {
+        filters: [ { name: 'any', extensions: ['*'] }, { name: 'img', extensions: ['jpg'] } ]
+        },
+        function (fileName) {
+        if (fileName === undefined) return
+        fs.writeFile(fileName, text.value, function (err) {
+        if (err) { window.alert('writeFile Fail!'); return }
+        dialog.showMessageBox({ message: '儲存完畢！', buttons: ['OK'] })
+        })
+        var filePath = document.getElementById('filePath')
+        filePath.innerText = fileName
+        })
+        }
+        function loadimage(){
+        dialog.showOpenDialog(
+        function (fileName) {
+        if (fileName === undefined) {
+        console.log('No file selected')
+        return
+        }
+        console.log('fileName=' + fileName)
+
+        var filePath = document.getElementById('filePath')
+        filePath.innerText = fileName
+        var loadingImage = loadImage(
+            e.target.files[0],
+            function (img) {
+                document.body.appendChild(img);
+            },
+            {maxWidth: 600}
+        )
+      }
+    )
+  }
+        
+        function destroyClickedElement(event) {
+        document.body.removeChild(event.target);
+}
+
+     
+    
+    </script>
+    
+    
+    
+    
+    <style type="text/css">
+        #Radio6 {
+            height: 24px;
+        }
+    </style>
+</head>
+<body
+ onload="init()">
+    <center>
+    <span class="style1">簡易小畫家</span>
+    <div style="width: 400px; height: 300px; border-style: solid; border-width: 1px; text-align: center; background-color: #FFFFFF;"
+        onmousedown="md()" onmousemove="mv()" onmouseup="mup()">
+        <canvas id="m" width="400" height="300"></canvas>
+    </div>
+    </center>
+    <p style="text-align: center">
+        筆色：
+        <input id="Radio1" checked="" name="R" type="radio" value="V1" onclick="return Radio1_onclick()" />紅
+        <input id="Radio2" checked="" name="R" type="radio" value="V1" onclick="return Radio2_onclick()" />綠
+        <input id="Radio3" checked="" name="R" type="radio" value="V1" onclick="return Radio3_onclick()" />藍
+        <input id="Radio4" checked="" name="R" type="radio" value="V1" onclick="return Radio4_onclick()" />黑
+        <input id="Radio5" checked="" name="R" type="radio" value="V1" onclick="return Radio5_onclick()" />橡皮擦
+    </p>
+    <p style="text-align: center">
+        筆粗：
+        <input id="Radio6" checked="" name="W" type="radio" value="V1" onclick="return Radio6_onclick()" />1px
+        <input id="Radio7" checked="" name="W" type="radio" value="V1" onclick="return Radio7_onclick()" />2px
+        <input id="Radio8" checked="" name="W" type="radio" value="V1" onclick="return Radio8_onclick()" />3px
+        <input id="Radio9" checked="" name="W" type="radio" value="V1" onclick="return Radio9_onclick()" />5px
+        <input id="Radio10" checked="" name="W" type="radio" value="V1" onclick="return Radio10_onclick()" />10px
+    </p>
+    <p style="text-align: center">
+        <input id="Button1" type="button" value="清除" onclick="return Button1_onclick()" />
+        <button onclick="saveFileAs()">存檔</button>
+        <button onclick="loadimage()">匯入圖片</button>
+       
+        
+   
+    </body>
+</html>
+
+      
