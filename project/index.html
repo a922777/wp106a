@@ -42,22 +42,16 @@ function throwdice(){
 			    point = sum;
 				document.f.pv.value = point;
 				firstturn = false;
-				document.f.stage.value = "Need follow-up throw.";
-				document.f.outcome.value=" ";
 			}
 		}
 		else{
 			switch(sum){
 				case point:
 				         document.f.outcome.value = "You win!";
-						 document.f.stage.value = "Back to first throw.";
-						 document.f.pv.value=" ";
 						 firstturn = true;
 						 break;
 				case 7:
 				      document.f.outcome.value="You lose!";
-					  document.f.stage.value="Back to first throw.";
-					  document.f.pv.value=" ";
 					  firstturn = true;
 				}
 			}
